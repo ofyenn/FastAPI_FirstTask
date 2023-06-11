@@ -1,6 +1,15 @@
 version: "3"
 
 services:
+  fastapi:
+    build: 
+      context: ./api
+    ports:
+      - "8000:80"
+    depends_on:
+        questiondb:
+            condition: service_healthy
+
   questiondb:
     image: postgres
     environment:
@@ -9,9 +18,3 @@ services:
       POSTGRES_DB: questions
     volumes:
       - ./db:/var/lib/postgresql/data
-
-  fastapi:
-    build: 
-      context: ./api
-    ports:
-      - "8000:80"
