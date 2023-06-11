@@ -10,7 +10,7 @@ services:
     volumes:
       - ./db:/var/lib/postgresql/data
 
-fastapi:
+  fastapi:
     build: 
       context: ./api
     ports:
