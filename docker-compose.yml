@@ -17,4 +17,9 @@ services:
       POSTGRES_PASSWORD: ofyenn
       POSTGRES_DB: questions
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./db:/var/lib/postgresql/
+    healthcheck:
+      test: ["CMD", "psql", "-h", "localhost", "-U", "postgres", "-c", "select 1", "airflow"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
