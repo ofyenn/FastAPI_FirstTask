@@ -1,0 +1,17 @@
+version: "3"
+
+services:
+  fastapi:
+    build: 
+      context: ./api
+    ports:
+      - "8000:80"
+
+  questiondb:
+    image: postgres
+    environment:
+      POSTGRES_USER: ofyenn
+      POSTGRES_PASSWORD: ofyenn
+      POSTGRES_DB: questions
+    volumes:
+      - ./db:/var/lib/postgresql/data
